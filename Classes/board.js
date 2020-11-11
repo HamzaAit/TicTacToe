@@ -1,4 +1,7 @@
 function board() {
+    this.gameOver = false;
+    this.winner = '';
+
     this.grid = [
         ['', '', ''],
         ['', '', ''],
@@ -77,6 +80,52 @@ function board() {
                 }
             }
         }
-        return(played);
+        if(played) this.winner = this.checkGameOver();
+        return (played);
+    }
+
+    this.checkGameOver = function(){
+        if(this.grid[0][0] != ''){
+            if(this.grid[0][0] == this.grid[1][1] && this.grid[1][1] == this.grid[2][2]){
+                this.gameOver = true;
+                return (this.grid[0][0]);
+            }
+            else if(this.grid[0][0] == this.grid[0][1] && this.grid[0][1] == this.grid[0][2]){
+                this.gameOver = true;
+                return (this.grid[0][0]);
+            }
+            else if(this.grid[0][0] == this.grid[1][0] && this.grid[1][0] == this.grid[2][0]){
+                this.gameOver = true;
+                return (this.grid[0][0]);
+            }
+        }
+        if(this.grid[0][1] != ''){
+            if(this.grid[0][1] == this.grid[1][1] && this.grid[1][1] == this.grid[2][1]){
+                this.gameOver = true;
+                return (this.grid[0][1]);
+            }
+        }
+        if(this.grid[0][2] != ''){
+            if(this.grid[0][2] == this.grid[1][1] && this.grid[1][1] == this.grid[2][0]){
+                this.gameOver = true;
+                return (this.grid[0][2]);
+            }
+            else if(this.grid[0][2] == this.grid[1][2] && this.grid[1][2] == this.grid[2][2]){
+                this.gameOver = true;
+                return (this.grid[0][2]);
+            }
+        }
+        if(this.grid[1][0] != ''){
+            if(this.grid[1][0] == this.grid[1][1] && this.grid[1][1] == this.grid[1][2]){
+                this.gameOver = true;
+                return (this.grid[1][0]);
+            }
+        }
+        if(this.grid[2][0] != ''){
+            if(this.grid[2][0] == this.grid[2][1] && this.grid[2][1] == this.grid[2][2]){
+                this.gameOver = true;
+                return (this.grid[2][0]);
+            }
+        }
     }
 }
